@@ -1,30 +1,25 @@
-// Your code here
+window.onload = function() {
+	document.getElementById("addToDo").addEventListener("change", function(event) {
+		alert(event.target.value);
+		var lista = document.getElementById("myUL");
+		var li = document.createElement("li");
+		var i = document.createElement("i");
+		i.classList.add("fa", "fa-trash");
 
-//Crear un nuevo elemento
-// function crearNuevoLi() {
-// 	let newLi = document.createElement("li");
-// 	let valorinput = document.getElementById("myInput");
-// 	var t = document.createTextNode(valorinput);
+		i.addEventListener("click", function(event) {
+			event.target.parentElement.remove();
+		});
 
-// 	newLi.appendChild(t);
-// 	if (valorinput === "") {
-// 		alert("You must write something!");
-// 	} else {
-// 		document.getElementById("addToDo").appendChild(li);
-// 	}
+		i.innerHTML = "" + event.target.value;
+		li.appendChild(i);
+		lista.appendChild(li);
+		
+	});
 
-// 	document.getElementById("myInput").value = "";
-// }
-
-function newElement() {
-	var li = document.createElement("li");
-	var inputValue = document.getElementById("addToDo").value;
-	var t = document.createTextNode(inputValue);
-	li.appendChild(t);
-	if (inputValue === "") {
-		alert("You must write something!");
-	} else {
-		document.getElementById("myUL").appendChild(li);
-	}
-	document.getElementById("addToDo").value = "";
-}
+	document.querySelectorAll(".fa-trash").forEach(function(el) {
+		el.addEventListener("click", function(event) {
+			event.target.parentElement.parentElement.remove();
+		});
+		console.log(el);
+	});
+};
